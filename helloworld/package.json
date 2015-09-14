@@ -1,0 +1,11 @@
+{
+  "name": "hello-world",
+  "version": "0.0.1",
+  "description": "An express hello world app",
+  "author": "Neil Ni <tzuyangni@gmail.com>",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "license": "MIT"
+}

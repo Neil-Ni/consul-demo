@@ -1,0 +1,33 @@
+helloworld:
+  build: ./helloworld
+  ports:
+    - "3000"
+  environment:
+    SERVICE_NAME: helloworld
+    SERVICE_TAGS: production
+
+consul:
+  command: -server -bootstrap
+  image: progrium/consul:latest
+  ports:
+    - "8400:8400"
+    - "8500:8500"
+    - "8600:53/udp"
+    - "172.18.42.1:53:53/udp"
+
+registrator:
+  command:  -ip=192.168.99.100 consul://consul:8500
+  image: gliderlabs/registrator:latest
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+  links:
+    - consul
+
+lb:
+  build: ./lb
+  links:
+    - consul
+  ports:
+    - "80:80"
+  volumes:
+    - ./lb/templates:/etc/consul-templates
