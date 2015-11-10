@@ -1,4 +1,4 @@
-FROM google/nodejs
+FROM node:slim
 
 WORKDIR /helloworld
 ADD package.json /helloworld/
