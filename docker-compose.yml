@@ -29,5 +29,7 @@ lb:
     - consul
   ports:
     - "80:80"
+  environment:
+    CONSUL_URL: consul:8500
   volumes:
-    - ./lb/templates:/etc/consul-templates
+    - ./lb/consul-template:/etc/consul-template

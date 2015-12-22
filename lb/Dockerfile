@@ -1,2 +1,2 @@
-FROM 1science/nginx:1.9.0
+FROM 1science/nginx:consul
 COPY config/nginx.conf /etc/nginx/nginx.conf
