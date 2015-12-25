@@ -13,7 +13,7 @@ consul:
     - "8400:8400"
     - "8500:8500"
     - "8600:53/udp"
-    - "172.18.42.1:53:53/udp"
+    - "172.17.42.1:53:53/udp"
 
 registrator:
   command:  -ip=192.168.99.100 consul://consul:8500
@@ -29,5 +29,7 @@ lb:
     - consul
   ports:
     - "80:80"
+  environment:
+    CONSUL_URL: consul:8500
   volumes:
-    - ./lb/templates:/etc/consul-templates
+    - ./lb/consul-template:/etc/consul-template
